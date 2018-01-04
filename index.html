@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MEMORY</title>
+    <link rel="stylesheet" href="./icones/web-fonts-with-css/css/fontawesome-all.css">
+    <link rel="stylesheet" href="./Style.css"/>
+    <link rel="icon" type="image/png" href="images/favicon-48.png"/>
+    <script type="text/javascript" src="Script.js"></script>
+</head>
+<body onload="chargeTableau(), chargerPseudo()">
+    <header>
+        <h1>MEMORY</h1>
+        <p id="scoreActuel"><span id="pseudo">joueur</span> : <span id="nbPoints">0</span>pts</p>
+        <p id="toursActuel">Tours : <span id="nbTours">0</span></p>
+        <i id="rejouer" class="fas fa-play" onclick="chargeImagesCartes()" title="Jouer"></i>
+        <i id="aide" class="fas fa-lightbulb" onclick="aide()" title="Aide"></i>
+        <i id="openMasque" class="fas fa-ellipsis-v" onclick="openMasque()" title="Menu"></i>
+    </header>
+    <div id="masque">
+        <div id="conteneur">
+            <div id="onglet">
+                <h4 id="onglet1" onclick="afficherInfos('nouvellePartie')"><i class="fas fa-user"></i> Nouveau joueur</h4>
+                <h4 id="onglet2" onclick="afficherInfos('listeRegles')"><i class="fas fa-info-circle"></i> Règles du jeux</h4>
+                <h4 id="onglet3" onclick="afficherInfos('tableDesScores')"><i class="fas fa-trophy"></i> Scores</h4>
+            </div>
+            <div id="information">
+                <ul id="nouvellePartie">
+                    <li><img src="images/logo2.png"></li>
+                    <li><input type="texte" id="identifiant" placeholder="Nom du joueur" select="attribuerPseudo()"/></li>
+                    <li><input type="button" id="valider" value="Jouer" onclick="attribuerPseudo()"/></li>
+                    <li id="lienEmoji" onclick="masqueAfficheEmoji()">emoji</li>
+                </ul>
+                <ol id="listeRegles">
+                        <li>Les cartes ici présente sont placées face caché.</li>
+                        <li>Ils y à 48 cartes au total mais seulement 26 d'entre elles vous sont proposé (soit 13 couples).</li>
+                        <li>Les cartes fonctoinnes par paire donc vous devez tirer uniquement deux cartes à chaque tours.</li>
+                        <li>Le nombre de tours et le temps ne sont pas limités.</li>
+                        <li>Carte Jocker : au nombre de deux, elles vous permettent de tirrer une autre carte sans craindre la perte de points.</li>
+                        <li>Carte fantome : au nombre de deux elle vous font perdre des points quelque soit la seconde carte tirée.</li>
+                        <li>A la fin du jeux, si il ne reste plus que les deux cartes fantomes, celle-ci vous rapportent des points.</li>
+                        <li>Les cartes spéciales tel que le jocker et le fantomes ne sont utilisable qu'une seule et unique fois.</li>
+                        <li>Seulement la moitié des cartes disponibles sont affiché donc il est probable que vous aiyer aucune carte spéciale.</li>
+                        <li>Une aide vous est proposé pour obtenir un couple, mais elle est couteuse.</li>
+                        <li>
+                            <strong>Les points :</strong>
+                            <ul>
+                                <li>Un couple de carte valide : +10pts</li>
+                                <li>Deux cartes différentes : -2pts</li>
+                                <li>Un jocker et une autres cartes (sauf le fantome) : +0pts</li>
+                                <li>Une carte fantome et une autre carte : -5pts</li>
+                                <li>Deux cartes fantomes : mize à zéro</li>
+                                <li>Dernier couple correspond aux cartes fantomes : +100pts</li>
+                                <li>Une aide : -8pts</li>
+                            </ul>
+                        </li>
+                        <li><strong>BON JEUX !!!</strong></li>
+                    </ol>
+                <table id="tableDesScores">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Joueur</th>
+                                <th>Score</th>
+                                <th>Tours</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpsTableau">
+                            <!-- Les lignes et les cellules du tableau sont générées avec le javascript ! -->
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+        <div id="tousMesEmoji">
+            <table>
+                <tbody>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F600;')">&#x1F600;</td>
+                        <td onclick="ajoutEmojie('&#x1F603;')">&#x1F603;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F60E;')">&#x1F60E;</td>
+                        <td onclick="ajoutEmojie('&#x1F60D;')">&#x1F60D;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F618;')">&#x1F618;</td>
+                        <td onclick="ajoutEmojie('&#x1F642;')">&#x1F642;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F924;')">&#x1F924;</td>
+                        <td onclick="ajoutEmojie('&#x1F922;')">&#x1F922;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F913;')">&#x1F913;</td>
+                        <td onclick="ajoutEmojie('&#x1F47B;')">&#x1F47B;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F4A9;')">&#x1F4A9;</td>
+                        <td onclick="ajoutEmojie('&#x1F648;')">&#x1F648;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F649;')">&#x1F649;</td>
+                        <td onclick="ajoutEmojie('&#x1F64A;')">&#x1F64A;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F476;')">&#x1F476;</td>
+                        <td onclick="ajoutEmojie('&#x1F474;')">&#x1F474;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F475;')">&#x1F475;</td>
+                        <td onclick="ajoutEmojie('&#x1F575;')">&#x1F575;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F935;')">&#x1F935;</td>
+                        <td onclick="ajoutEmojie('&#x1F385;')">&#x1F385;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F936;')">&#x1F936;</td>
+                        <td onclick="ajoutEmojie('&#x2764;')">&#x2764;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F49D;')">&#x1F49D;</td>
+                        <td onclick="ajoutEmojie('&#x1F451;')">&#x1F451;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F984;')">&#x1F984;</td>
+                        <td onclick="ajoutEmojie('&#x1F98C;')">&#x1F98C;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F439;')">&#x1F439;</td>
+                        <td onclick="ajoutEmojie('&#x1F430;')">&#x1F430;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F424;')">&#x1F424;</td>
+                        <td onclick="ajoutEmojie('&#x1F54A;')">&#x1F54A;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F433;')">&#x1F433;</td>
+                        <td onclick="ajoutEmojie('&#x1F36A;')">&#x1F36A;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F36F;')">&#x1F36F;</td>
+                        <td onclick="ajoutEmojie('&#x1F37C;')">&#x1F37C;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x2615;')">&#x2615;</td>
+                        <td onclick="ajoutEmojie('&#x1F37A;')">&#x1F37A;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F6A8;')">&#x1F6A8;</td>
+                        <td onclick="ajoutEmojie('&#x1F396;')">&#x1F396;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F3C5;')">&#x1F3C5;</td>
+                        <td onclick="ajoutEmojie('&#x1F6B9;')">&#x1F6B9;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F6BA;')">&#x1F6BA;</td>
+                        <td onclick="ajoutEmojie('&#x1F6BC;')">&#x1F6BC;</td>
+                    </tr>
+                    <tr>
+                        <td onclick="ajoutEmojie('&#x1F531;')">&#x1F531;</td>
+                        <td onclick="ajoutEmojie('&#x1F4A1;')">&#x1F4A1;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <i id="closeMasque" class="fas fa-times" onclick="closeMasque('masque')"></i>
+    </div>
+    <section>
+        <ul id="plateauDeCarte">
+            <!-- Les images sont générées avec le javascript ! -->
+        </ul>
+    </section>
+    <div id="messageFin">
+            <i class="fas fa-star"></i>
+            <ul>
+                <li>Bravo <span id="messageFin_pseudo">pseudo</span> !</li>
+                <li>Score : <span id="messageFin_nbPoints">0</span>pts</li>
+                <li>Tours : <span id="messageFin_nbTours">0</span></li>
+            </ul>
+            <i class="fas fa-times" onclick="closeMasque('messageFin')"></i>
+        </div>
+</body>
+</html>
