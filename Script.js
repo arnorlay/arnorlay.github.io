@@ -44,6 +44,8 @@ function remiseAZero() {
     var carte2;
     document.getElementById("nbPoints").innerHTML = points;
     document.getElementById("nbTours").innerHTML = tours;
+    document.getElementById("messageFin").style.top = "-30%";
+    document.getElementById("messageFin").style.display = "";
 }
 function retourner(id) {
     document.getElementById(id).style.top = "0%";
