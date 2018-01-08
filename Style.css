@@ -36,7 +36,7 @@ h1 {
 
 #openMasque, #rejouer, #aide {
     font-size:1.3em;
-    padding-top: 1%;
+    padding-top: 1vw;
     flex:0 1 4%;
     text-align: center;
     cursor:pointer;
