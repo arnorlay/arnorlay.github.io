@@ -110,7 +110,7 @@ function chargerPseudo(){
 function dejasPrise(id) {
     document.getElementById(id).parentElement.style.backgroundColor = "transparent";
     document.getElementById(id).parentElement.style.cursor = "auto";
-    //document.getElementById(id).parentElement.style.borderColor = "transparent"//Si tu ne veut pas de bordure, décommente le.
+    document.getElementById(id).parentElement.style.borderColor = "transparent"//Si tu ne veut pas de bordure, décommente le.
 }
 function plasser(selecteur, indice) {
     switch(selecteur) {
@@ -315,16 +315,16 @@ function resultat(id) {
         listeCarteJouee.push(id);
         retourner(id);
     }
-    setTimeout(attributionDesPoints, 3000);
+    setTimeout(attributionDesPoints, 500);
     if ((listeDejasJouee.length == 26) && (!listeDejasJouee.includes("carte_15")) && (!listeDejasJouee.includes("carte_39"))) {
         retourner("carte_15");
         retourner("carte_39");
         points = points + 100;
         document.getElementById("nbPoints").innerHTML = points;
-        setTimeout('reRetourner("carte_15")', 2000);
-        setTimeout('reRetourner("carte_39")', 2000);
-        setTimeout('dejasPrise("carte_15")', 2000);
-        setTimeout('dejasPrise("carte_39")', 2000);
+        setTimeout('reRetourner("carte_15")', 500);
+        setTimeout('reRetourner("carte_39")', 500);
+        setTimeout('dejasPrise("carte_15")', 500);
+        setTimeout('dejasPrise("carte_39")', 500);
         listeDejasJouee.push("carte_15");
         listeDejasJouee.push("carte_39");
     }
@@ -341,8 +341,7 @@ function masqueAfficheEmoji(){
     etat = document.getElementById("tousMesEmoji");
     if(etat.style.display == "none") {
         etat.style.display = "block";
-    }else {
-        etat.style.display = "none";
+        setTimeout('etat.style.display = "none";', 10000)
     }
 }
 function ajoutEmojie(caractere) {
